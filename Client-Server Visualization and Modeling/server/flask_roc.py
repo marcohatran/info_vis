@@ -1,5 +1,6 @@
 from flask import Flask
 from flask_restful import Resource, Api
+from flask_cors import CORS
 from sklearn.preprocessing import StandardScaler, MinMaxScaler
 from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import roc_curve
@@ -7,6 +8,7 @@ import pandas as pd
 import numpy as np
 
 app = Flask(__name__)
+CORS(app)
 api = Api(app)
 
 
@@ -48,7 +50,7 @@ class ROC(Resource):
 # Here you need to add the ROC resource, ex: api.add_resource(HelloWorld, '/')
 # for examples see 
 # https://flask-restful.readthedocs.io/en/latest/quickstart.html#a-minimal-api
-api.add_resource(ROC, '/<string:preprocessing>/<string:c>')
+api.add_resource(ROC, '/api/<string:preprocessing>/<string:c>')
 
 
 if __name__ == '__main__':
